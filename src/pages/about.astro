@@ -5,7 +5,7 @@ import { language } from "@/utils/data";
 import { socialLinks } from "@/utils/data";
 import { studies } from "@/utils/data";
 import { skills } from "@/utils/data";
-
+import Tooltip from "@/lib/tooltip.astro";
 ---
 
 <Layout title="Acerca de mí | Portfolio">
@@ -25,7 +25,7 @@ import { skills } from "@/utils/data";
 
                 <div class="items-center">
                     <p class="text-2xl mb-2">Ingeniero de Sistemas</p>
-                    <span class="flex justify-center mb-6">Colombia/Cali</span>
+                    <span class="flex justify-center mb-6  dark:text-neutral-500 text-neutral-500">Colombia/Cali</span>
                 </div>
 
                 <div class="flex space-x-2 text-sm">
@@ -44,8 +44,16 @@ import { skills } from "@/utils/data";
             <!-- Columna Derecha - Información -->
             <div class="md:w-2/3 md:pl-10 py-14">
                 <!-- Título -->
-                <h1 class="text-5xl font-bold mb-1">Miller Mosquera</h1>
-                <p class="text-gray-500 mb-4 text-2xl">Backend Dev</p>
+
+                <h1 class="text-5xl font-bold">
+                    Miller Mosquera
+                    <span class="absolute">
+                        <Tooltip />
+                    </span>
+                </h1>
+                <p class="mb-4 text-2xl dark:text-neutral-500 text-neutral-500">
+                    Backend Dev
+                </p>
                 <div class="flex space-x-2 mb-6">
                     {
                         socialLinks.map((link) => (
@@ -65,8 +73,20 @@ import { skills } from "@/utils/data";
                 </div>
 
                 <!-- Descripción -->
-                <p class="text-lg mb-16">
-                    XXXXXXXXX.
+
+                <p
+                    class="text-lg mb-16 leading-relaxed dark:text-neutral-500 text-neutral-500"
+                >
+                    Un Apasionado por la tecnología y formado como <strong
+                        class="text-white">Ingeniero de Sistemas,</strong
+                    > actualmente me especializo en desarrollo <strong
+                        class="text-white">Back-end</strong
+                    >. Comprometido con el diseño y la implementación de
+                    soluciones tecnológicas robustas, escalables y orientadas al
+                    alto rendimiento. Actualmente busco seguir creciendo de
+                    manera profesional, aportando valor en proyectos que
+                    representen un verdadero reto técnico y generen impacto real
+                    en los usuarios y en el negocio.
                 </p>
 
                 <!-- Experiencia de Trabajo
@@ -114,11 +134,11 @@ import { skills } from "@/utils/data";
                                         <h3 class="text-xl font-bold">
                                             {study.institution}
                                         </h3>
-                                        <span class="text-[#8dc7b7]">
+                                        <span class=" dark:text-neutral-500 text-neutral-500">
                                             {study.degree}
                                         </span>
                                     </div>
-                                    <span class="text-sm mb-6">
+                                    <span class="text-sm mb-6  dark:text-neutral-500 text-neutral-500">
                                         {study.duration}
                                     </span>
                                 </div>
@@ -133,12 +153,8 @@ import { skills } from "@/utils/data";
                             skills.map((skill) => (
                                 <div class="flex justify-between items-center mb-4">
                                     <div class="flex ">
-                                        <h3 class="text-xl">
-                                            {skill.text}
-                                        </h3>
-               
+                                        <h3 class="text-xl">{skill.text}</h3>
                                     </div>
-
                                 </div>
                             ))
                         }
