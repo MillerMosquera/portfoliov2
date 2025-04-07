@@ -6,6 +6,16 @@ import Linkedin from "@/assets/socials/linkedin.svg";
 import Github from "@/assets/socials/Github.svg";
 import Mail from "@/assets/socials/mail.svg";
 
+//Skill
+import Java from "@/assets/skill/java.svg";
+import Spring from "@/assets/skill/spring.svg";
+import Javascript from "@/assets/skill/javascript.svg";
+import Html from "@/assets/skill/html5.svg";
+import Css from "@/assets/skill/css.svg";
+import Node from "@/assets/skill/nodejs.svg";
+import PostgreSQL from "@/assets/skill/postgresql.svg";
+import Git from "@/assets/skill/git.svg";
+
 export const links = [
     { image: Home.src, href: "/", text: "Inicio" },
     { image: User.src, href: "/about", text: "Acerca de" },
@@ -76,14 +86,14 @@ export const studies = [
 ];
 
 export const skills = [
-    { image: "", text: "Java" },
-    { image: "", text: "Spring boot" },
-    { image: "", text: "JavaScript" },
-    { image: "", text: "HTML" },
-    { image: "", text: "CSS" },
-    { image: "", text: "Node.js" },
-    { image: "", text: "PostgreSQL" },
-    { image: "", text: "Git" },
+    { image: Java.src, text: "Java" },
+    { image: Spring.src, text: "Spring boot" },
+    { image: Javascript.src, text: "JavaScript" },
+    { image: Html.src, text: "HTML" },
+    { image: Css.src, text: "CSS" },
+    { image: Node.src, text: "Node.js" },
+    { image: PostgreSQL.src, text: "PostgreSQL" },
+    { image: Git.src, text: "Git" },
 ];
 
 export const hobbies = [

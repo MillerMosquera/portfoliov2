@@ -155,11 +155,16 @@ import Tooltip from "@/lib/tooltip.astro";
                 <div>
                     <h2 class="text-3xl font-bold mb-8">Skills</h2>
                     <div>
-                        <ul class="mt-2 flex flex-wrap">
+                        <ul class="mt-2 flex flex-wrap text-neutral-500">
                             {
                                 skills.map((skill) => (
-                                    <ul class="flex justify-between px-3 items-center mb-4">
-                                        <div class="flex ">
+                                    <ul class="flex justify-between px-1 items-center mb-4">
+                                        <div class="flex to-transparent border border-white/10 shadow-xl shadow-black/25 duration-500 rounded-[10px] backdrop-blur-[10px] p-2">
+                                            <img
+                                                src={skill.image}
+                                                alt={skill.text}
+                                                class="w-4 h-4 mr-2 mt-0.3 "
+                                            />
                                             <h3 class="text-sm">
                                                 {skill.text}
                                             </h3>
@@ -168,6 +173,17 @@ import Tooltip from "@/lib/tooltip.astro";
                                 ))
                             }
                         </ul>
+                    </div>
+                    <div class="mt-10">
+                        <h2 class="text-3xl font-bold mb-8 ">Contáctame</h2>
+                        <p class="text-neutral-500">
+                            Actualmente estoy buscando nuevas oportunidades, mi
+                            bandeja de entrada es como un lienzo en blanco
+                            esperando tu mensaje. Si deseas compartir una
+                            oportunidad, estaré encantado de trabajar contigo.
+                            ¡Atrévete a escribir y yo estaré aquí para
+                            responder!
+                        </p>
                     </div>
                 </div>
             </div>
