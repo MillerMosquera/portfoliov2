@@ -41,6 +41,12 @@ export const socialLinks = [
         url: "mailto:miller.mosquerpa@gmail.com",
     },
 ];
+
+export const email = [
+    {
+        url: "mailto:miller.mosquerpa@gmail.com",
+    }
+]
 export const workExperience = [
     {
         company: "XXXXX",

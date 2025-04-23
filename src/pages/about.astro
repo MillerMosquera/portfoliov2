@@ -6,6 +6,7 @@ import { socialLinks } from "@/utils/data";
 import { studies } from "@/utils/data";
 import { skills } from "@/utils/data";
 import Tooltip from "@/lib/tooltip.astro";
+import { email } from "@/utils/data";
 ---
 
 <Layout title="Acerca de mí | Portfolio">
@@ -51,14 +52,14 @@ import Tooltip from "@/lib/tooltip.astro";
             <div class="md:w-2/3 md:pl-10 py-14">
                 <!-- Título -->
 
-                <h1 class="text-5xl font-bold">
+                <h1 class="text-6xl font-extrabold">
                     Miller Mosquera
                     <span class="absolute">
                         <Tooltip />
                     </span>
                 </h1>
                 <p class="mb-4 text-2xl dark:text-neutral-500 text-neutral-500">
-                    Backend Dev
+                    Back-end Dev
                 </p>
                 <div class="flex space-x-2 mb-6">
                     {
@@ -175,7 +176,7 @@ import Tooltip from "@/lib/tooltip.astro";
                         </ul>
                     </div>
                     <div class="mt-10">
-                        <h2 class="text-3xl font-bold mb-8 ">Contáctame</h2>
+                        <h2 class="text-3xl font-bold mb-8">Contáctame</h2>
                         <p class="text-neutral-500">
                             Actualmente estoy buscando nuevas oportunidades, mi
                             bandeja de entrada es como un lienzo en blanco
@@ -185,6 +186,80 @@ import Tooltip from "@/lib/tooltip.astro";
                             responder!
                         </p>
                     </div>
+                    <div class="mt-8 mb-8">
+                        <a
+                            class="inline-flex items-center leading-tight text-slate-200 font-semibold group"
+                            aria-label="contact me"
+                            href={`mailto:${email}`}
+                        >
+                            <span
+                                class="flex dark:text-neutral-50 text-neutral-900"
+                            >
+                                Di Hola!
+                                <span class="ml-1">
+                                    <img
+                                        class="color:transparent shake-left-right"
+                                        src={"https://firebasestorage.googleapis.com/v0/b/portfolio-8d759.appspot.com/o/Foto_icono%2Fwave.webp?alt=media&token=959e271a-84ba-4101-9642-79f078f2ea07&_gl=1*12spykx*_ga*MjcwMDEzMTQyLjE2OTc5NDUxMDI.*_ga_CW55HF8NVT*MTY5ODg1ODI3MS45LjEuMTY5ODg1ODMxMi4xOS4wLjA."}
+                                        alt="wave icon"
+                                        loading="lazy"
+                                        width={"20"}
+                                        height={"20"}
+                                        decoding="async"
+                                    /></span
+                                >
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="py-9 w-full border-t dark:border-t-neutral-900 border-t-neutral-300">
+                    <h4
+                        class="text-left font-bold text-3xl tracking-tighter dark:text-white"
+                    >
+                        <div
+                            class="flex gap-2 font-medium dark:text-neutral-500 text-neutral-900 text-xs"
+                        >
+                            <span>De</span>
+                        </div>
+                        <a
+                            target="_blank"
+                            class="dark:text-neutral-50 text-neutral-900"
+                        >
+                            Colombia
+                        </a>
+                    </h4>
+                    <p
+                        class="mt-2 leading-normal dark:text-neutral-500 text-neutral-500"
+                    >
+                        Desarrollado en{" "}
+                        <a
+                            class="font-semibold dark:text-neutral-50
+                             text-neutral-900"
+                            href="https://nextjs.org/"
+                            target="_blank"
+                        >
+                            Astro,
+                        </a>{" "}
+                        con{" "}
+                        <a
+                            class="font-semibold dark:text-neutral-50
+                             text-neutral-900"
+                            href="https://tailwindcss.com/"
+                            target="_blank"
+                        >
+                            Html, Css, Js
+                        </a>{" "}
+                        Adaptado del Portafolio de {" "}
+                        <a
+                            class="font-semibold
+                             dark:text-neutral-50
+                             text-neutral-900"
+                            href="https://brittanychiang.com/"
+                            target="_blank"
+                        >
+                            Selene Yu.
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
