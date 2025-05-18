@@ -1,0 +1,40 @@
+<div class="w-20 text-right tabular-nums text-sm opacity-80 clock" id="clock">
+    <input 
+        type="text" 
+        id="system-clock" 
+        readonly 
+        class="bg-transparent border-none outline-none text-sm w-full text-right" 
+        style="font-variant-numeric: tabular-nums; caret-color: transparent;"
+        value="--:--:--"
+        onclick="event.preventDefault()"
+    />
+</div>
+
+<script>
+  // Usar un input en lugar de un span - esto utiliza la hora del sistema
+  const element = document.getElementById("system-clock");
+  if (element && element instanceof HTMLInputElement) {
+    const clockInput = element;
+    function updateClock() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      clockInput.value = timeString;
+    }
+
+    // Actualizar inmediatamente
+    updateClock();
+    
+    // Actualizar cada segundo
+    const intervalId = setInterval(updateClock, 1000);
+
+    // Limpiar el intervalo cuando el componente se desmonte
+    document.addEventListener('astro:before-swap', () => {
+      clearInterval(intervalId);
+    });
+  }
+</script>

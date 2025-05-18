@@ -1,49 +1,141 @@
 ---
-import { links } from "@/utils/data.js";
+import { links as allLinks } from "@/utils/data.js";
+import { Image } from "astro:assets";
+import HouseIcon from "../../public/assets/icons/house.svg";
+import UserIcon from "../../public/assets/icons/user.svg";
+import TerminalIcon from "../../public/assets/icons/terminal.svg";
+import BookIcon from "../../public/assets/icons/book.svg";
+
+const currentPath = Astro.url.pathname;
+const homeLink = allLinks.find((link) => link.href === "/");
+const navLinks = allLinks.filter((link) => link.href !== "/");
+
+const iconMap = {
+    "/": HouseIcon.src,
+    "/about": UserIcon.src,
+    "/project": TerminalIcon.src,
+    "/blog": BookIcon.src,
+} as const;
+
+import Clock from "@/components/Clock.astro";
 ---
 
-<header class="w-full px-6 py-4 flex justify-between items-center z-10">
-    <div class="contents">
-        <div class="text-sm opacity-80 text-white">Colombia/Cali</div>
-        <nav
-            id="nav"
-            class="flex items-center gap-6 pl-6 pr-6 py-2 rounded-full from-white/10 to-transparent border border-white/10 shadow-xl shadow-black/25 justify-center duration-500 mx-[-45px] backdrop-blur-[10px]"
-        >
-            {
-                links.map((link) => (
-                    <a
-                        href={link.href}
-                        class="hidden md:flex items-center gap-1 p-1"
-                    >
-                        <img
-                            src={link.image}
-                            alt={link.text}
-                            class="w-4 h-4 mr-1"
-                        />
-                        <span>{link.text}</span>
-                    </a>
-                ))
-            }
-        </nav>
 
-        <div class="text-sm opacity-80 clock text-white" id="clock">14:51:12</div>
+<header
+    id="main-header"
+    class="sticky top-0 w-full p-4 flex justify-between items-center z-9 transition-all duration-100 ease-in-out"
+    transition:persist
+>
+    <div class="contents">
+        <div class="text-sm text-neutral-950 dark:text-white">
+            Colombia/Cali
+        </div>
+        <div>
+            <nav
+                id="nav"
+                class="flex relative items-center gap-2 px-1 py-1 rounded-full bg-[#0000004D] border border-solid border-[#9595954D] shadow-lg backdrop-blur-xs text-sm"
+            >
+                {
+                    homeLink && (
+                        <a
+                            href={homeLink.href}
+                            data-astro-prefetch="load"
+                            class={`hidden md:flex items-center p-3 rounded-full transition-all duration-300 ease-in-out hover:bg-[#95959514] hover:border-solid cursor-pointer ${
+                                currentPath === "/"
+                                    ? "border border-[#9595954D] bg-[#ffffff10]"
+                                    : ""
+                            }`}
+                        >
+                            <img
+                                src={iconMap[homeLink.href as keyof typeof iconMap]}
+                                alt="Home"
+                                width="16"
+                                height="16"
+                                class="w-4 h-4 img-header"
+                                fetchpriority="high"
+                            />
+                        </a>
+                    )
+                }
+                <div class="h-5 w-px bg-gray-600" transition:persist></div>
+                {
+                    navLinks.map((link) => (
+                        <a
+                            href={link.href}
+                            class={`hidden md:flex items-center gap-1 px-3 py-2 rounded-full transition-all duration-300 ease-in-out border border-transparent hover:border-[#888] hover:bg-[#95959514] cursor-pointer ${
+                                currentPath === link.href
+                                    ? "border active-link"
+                                    : ""
+                            }`}
+                        >
+                            <img
+                                src={iconMap[link.href as keyof typeof iconMap]}
+                                alt={link.text || "Icon"}
+                                width="16"
+                                height="16"
+                                class="w-4 h-4 mr-1 img-header"
+                                fetchpriority="high"
+                            />
+                            {link.text && <span>{link.text}</span>}
+                        </a>
+                    ))
+                }
+            </nav>
+        </div>
+        <Clock />
     </div>
 </header>
 
 <script>
-    function updateClock() {
-        const now = new Date();
-        const hours = now.getHours().toString().padStart(2, "0");
-        const minutes = now.getMinutes().toString().padStart(2, "0");
-        const seconds = now.getSeconds().toString().padStart(2, "0");
+    let isScrolled = false;
+    const header = document.getElementById("main-header");
 
-        const timeString = `${hours}:${minutes}:${seconds}`;
-        const clockElement = document.getElementById("clock");
-        if (clockElement) {
-            clockElement.textContent = timeString;
-        }
+    if (header) {
+        window.addEventListener("scroll", () => {
+            if (!header) return;
+
+            if (window.scrollY > 2 && !isScrolled) {
+                header.classList.add("pt-2");
+                isScrolled = true;
+            } else if (window.scrollY <= 2 && isScrolled) {
+                header.classList.remove("pt-2");
+                isScrolled = false;
+            }
+        });
     }
 
-    updateClock();
-    setInterval(updateClock, 1000);
+    function updateActiveState() {
+        const currentPath = window.location.pathname;
+        const links = document.querySelectorAll("#nav a");
+
+        links.forEach((link) => {
+            const href = link.getAttribute("href");
+            const img = link.querySelector("img");
+
+            if (href === currentPath) {
+                link.classList.add("active-link");
+                img?.classList.add("active-icon");
+            } else {
+                link.classList.remove("active-link");
+                img?.classList.remove("active-icon");
+            }
+        });
+    }
+
+    document.addEventListener("astro:page-load", updateActiveState);
+    document.addEventListener("astro:after-swap", updateActiveState);
+
+    updateActiveState();
 </script>
+
+<style>
+    .active-icon {
+        transform: scale(1.1);
+        filter: brightness(1.2);
+    }
+    .active-link {
+        transform: scale(1.02);
+        border: 1px solid #9595954d !important;
+        background-color: #ffffff10 !important;
+    }
+</style>

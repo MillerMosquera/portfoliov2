@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-    /*Custom color*/
-    --color-surface: #0000004d;
-    --color-medium: #3f3f3f;
-}
-
 /* Estilo de scrollbar para navegadores webkit (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
     width: 10px;
@@ -40,6 +34,30 @@
 /* Para asegurar que el scroll suave está activado */
 html {
     scroll-behavior: smooth;
+}
+
+.radial-background {
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle 100vw at top center,
+            rgba(9, 64, 116, 0.8) 0%,
+            rgba(9, 64, 116, 0.4) 20%,
+            rgba(9, 64, 116, -0.2) 40%,
+            rgba(0, 0, 10, 0.05) 70%,
+            transparent 100%);
+}
+
+.hola{
+    background-color: #95959514;
+}
+
+.top-line {
+    background: linear-gradient(to bottom,
+            #0a0a0a 0%,
+            rgba(10, 10, 10, 0.9) 20%,
+            rgba(10, 10, 10, 0.6) 50%,
+            rgba(10, 10, 10, 0.3) 70%,
+            transparent 100%);
 }
 
 .shake-left-right:hover {

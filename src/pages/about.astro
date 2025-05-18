@@ -1,12 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Profile from "@/assets/imagen.svg";
-import { language } from "@/utils/data";
-import { socialLinks } from "@/utils/data";
-import { studies } from "@/utils/data";
-import { skills } from "@/utils/data";
 import Tooltip from "@/lib/tooltip.astro";
-import { email } from "@/utils/data";
+import { email, language, skills, socialLinks, studies } from "@/utils/data";
+import Profile from "../../public/assets/imagen.svg";
 ---
 
 <Layout title="Acerca de mí | Portfolio">
@@ -21,12 +17,16 @@ import { email } from "@/utils/data";
                         src={Profile.src}
                         alt="Miller Mosquera"
                         class="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
                     />
                 </div>
 
                 <div class="items-center">
-                    <p class="text-2xl mb-2">Ingeniero de Sistemas</p>
-                    <p class="dark:text-neutral-500 text-neutral-500">
+                    <p class="text-2xl mb-2 dark:text-neutral-50 text-zinc-950">
+                        Ingeniero de Sistemas
+                    </p>
+                    <p class="text-neutral-800 dark:text-neutral-500">
                         Escribo software y esas cosas. 🫨
                     </p>
                     <span
@@ -39,7 +39,7 @@ import { email } from "@/utils/data";
                     <p class="flex gap-6 flex-wrap">
                         {
                             language.map((lang) => (
-                                <span class="px-3 py-1 bg-white-200 rounded-md border border-white/10 shadow-xl shadow-black/25 backdrop-blur-[-10px]">
+                                <span class="px-3 py-1 bg-white-200 rounded-md border border-white/10 dark:border-white/10 shadow-xl shadow-black/25 backdrop-blur-[-10px]">
                                     {lang.text}
                                 </span>
                             ))
@@ -52,13 +52,15 @@ import { email } from "@/utils/data";
             <div class="md:w-2/3 md:pl-10 py-14">
                 <!-- Título -->
 
-                <h1 class="text-6xl font-extrabold">
+                <h1
+                    class="relative text-6xl font-extrabold text-theme-black dark:text-neutral-50"
+                >
                     Miller Mosquera
                     <span class="absolute">
                         <Tooltip />
                     </span>
                 </h1>
-                <p class="mb-4 text-2xl dark:text-neutral-500 text-neutral-500">
+                <p class="mb-4 text-3xl dark:text-neutral-500 text-neutral-500">
                     Back-end Dev
                 </p>
                 <div class="flex space-x-2 mb-6">
@@ -66,12 +68,14 @@ import { email } from "@/utils/data";
                         socialLinks.map((link) => (
                             <a
                                 href={link.url}
-                                class="py-1 px-3 flex from-white/10 to-transparent border border-white/10 shadow-xl shadow-black/25 duration-500 rounded-[10px] backdrop-blur-[10px] "
+                                class="py-1 px-3 flex from-white/10 to-transparent border border-white/10 shadow-xl shadow-black/25 duration-500 rounded-[10px] backdrop-blur-[10px] font-bold bg-[#151515] hover:bg-[#3F3F3F]"
                             >
                                 <img
                                     src={link.image}
                                     alt={link.text}
                                     class="w-4 h-4 mr-2 mt-1"
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 {link.text}
                             </a>
@@ -82,12 +86,13 @@ import { email } from "@/utils/data";
                 <!-- Descripción -->
 
                 <p
-                    class="mb-16 leading-relaxed dark:text-neutral-500 text-neutral-500"
+                    class="mb-16 leading-relaxed dark:text-neutral-500 text-neutral-800"
                 >
                     Un Apasionado por la tecnología y formado como <strong
-                        class="text-white">Ingeniero de Sistemas,</strong
+                        class="text-black dark:text-white"
+                        >Ingeniero de Sistemas,</strong
                     > actualmente me especializo en desarrollo <strong
-                        class="text-white">Back-end</strong
+                        class="text-black dark:text-white">Back-end</strong
                     >. Comprometido con el diseño y la implementación de
                     soluciones tecnológicas robustas, escalables y orientadas al
                     alto rendimiento. Actualmente busco seguir creciendo de
@@ -132,7 +137,9 @@ import { email } from "@/utils/data";
 
                 <!-- Educación -->
                 <div class="mb-16">
-                    <h2 class="text-3xl font-bold mb-8">Educación</h2>
+                    <h2 class="dark:text-white text-3xl font-bold mb-8">
+                        Educación
+                    </h2>
                     <div>
                         {
                             studies.map((study) => (
@@ -156,21 +163,23 @@ import { email } from "@/utils/data";
                 <div>
                     <h2 class="text-3xl font-bold mb-8">Skills</h2>
                     <div>
-                        <ul class="mt-2 flex flex-wrap text-neutral-500">
+                        <ul class="mt-2 flex flex-wrap gap-1 text-neutral-500">
                             {
                                 skills.map((skill) => (
-                                    <ul class="flex justify-between px-1 items-center mb-4">
-                                        <div class="flex to-transparent border border-white/10 shadow-xl shadow-black/25 duration-500 rounded-[10px] backdrop-blur-[10px] p-2">
+                                    <li class="flex px-1 items-center mb-4">
+                                        <div class="flex to-transparent border border-white/10 shadow-xl shadow-black/25 duration-500 rounded-[10px] backdrop-blur-sm p-2 hover:text-amber-50">
                                             <img
                                                 src={skill.image}
                                                 alt={skill.text}
-                                                class="w-4 h-4 mr-2 mt-0.3 "
+                                                class="w-4 h-4 mr-2 mt-0.3 object-contain"
+                                                loading="lazy"
+                                                decoding="async"
                                             />
                                             <h3 class="text-sm">
                                                 {skill.text}
                                             </h3>
                                         </div>
-                                    </ul>
+                                    </li>
                                 ))
                             }
                         </ul>
@@ -198,7 +207,7 @@ import { email } from "@/utils/data";
                                 Di Hola!
                                 <span class="ml-1">
                                     <img
-                                        class="color:transparent shake-left-right"
+                                        class="shake-left-right"
                                         src={"https://firebasestorage.googleapis.com/v0/b/portfolio-8d759.appspot.com/o/Foto_icono%2Fwave.webp?alt=media&token=959e271a-84ba-4101-9642-79f078f2ea07&_gl=1*12spykx*_ga*MjcwMDEzMTQyLjE2OTc5NDUxMDI.*_ga_CW55HF8NVT*MTY5ODg1ODI3MS45LjEuMTY5ODg1ODMxMi4xOS4wLjA."}
                                         alt="wave icon"
                                         loading="lazy"
@@ -211,8 +220,10 @@ import { email } from "@/utils/data";
                         </a>
                     </div>
                 </div>
-                
-                <div class="py-9 w-full border-t dark:border-t-neutral-900 border-t-neutral-300">
+
+                <div
+                    class="py-9 w-full border-t dark:border-t-neutral-500 border-t-neutral-300"
+                >
                     <h4
                         class="text-left font-bold text-3xl tracking-tighter dark:text-white"
                     >

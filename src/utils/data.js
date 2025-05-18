@@ -1,25 +1,23 @@
-import Home from '@/assets/header/home.svg';
-import Projects from '@/assets/header/projects.svg';
-import User from '@/assets/header/user.svg';
-
-import Linkedin from "@/assets/socials/linkedin.svg";
-import Github from "@/assets/socials/Github.svg";
-import Mail from "@/assets/socials/mail.svg";
+import Github from "../../public/assets/socials/Github.svg";
+import Linkedin from "../../public/assets/socials/linkedin.svg";
+import Mail from "../../public/assets/socials/mail.svg";
 
 //Skill
-import Java from "@/assets/skill/java.svg";
-import Spring from "@/assets/skill/spring.svg";
-import Javascript from "@/assets/skill/javascript.svg";
-import Html from "@/assets/skill/html5.svg";
-import Css from "@/assets/skill/css.svg";
-import Node from "@/assets/skill/nodejs.svg";
-import PostgreSQL from "@/assets/skill/postgresql.svg";
-import Git from "@/assets/skill/git.svg";
+import Css from "../../public/assets/skill/css.svg";
+import Git from "../../public/assets/skill/git.svg";
+import Html from "../../public/assets/skill/html5.svg";
+import Java from "../../public/assets/skill/java.svg";
+import Javascript from "../../public/assets/skill/javascript.svg";
+import Node from "../../public/assets/skill/nodejs.svg";
+import PostgreSQL from "../../public/assets/skill/postgresql.svg";
+import Spring from "../../public/assets/skill/spring.svg";
+
 
 export const links = [
-    { image: Home.src, href: "/", text: "Inicio" },
-    { image: User.src, href: "/about", text: "Acerca de" },
-    { image: Projects.src, href: "/project", text: "Proyectos" },
+    { href: "/" },
+    { href: "/about", text: "Acerca de" },
+    { href: "/project", text: "Proyectos" },
+    { href: "/blog", text: "Blog" },
 ];
 
 export const language = [{ text: "Español" }, { text: "Inglés-B1" }];

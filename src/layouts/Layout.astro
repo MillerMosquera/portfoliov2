@@ -1,41 +1,52 @@
 ---
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter } from 'astro:transitions';
 
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import "./src/styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Miller Mosquera | Desarrollador Backend",
+	description = "Portfolio de Miller Mosquera - Ingeniero de Sistemas y Desarrollador Backend especializado en Java, Spring Boot y tecnologías web modernas.",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Miller Mosquera</title>
+		<meta name="viewport" content="width=device-width initial-scale=1" />
+		<title>{title}</title>
 
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
 
-		<meta name="description" content="Miller Mosquera - Backend Dev" />
-		<meta name="author" content="Miller Mosquera" />
+		<meta name="description" content={description} />
+		<meta name="author" content={title} />
 		<meta name="keywords" content="Frontend, Backend, Fullstack" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<ClientRouter />
+		<ClientRouter/>
 	</head>
-	<body class="relative text-black dark:text-white">
-		<div
-			class="min-h-screen bg-gradient-to-b from-emerald-950 to-black text-white"
-		>
+	<body class="relative bg-[#0A0A0A] text-white">
+		<div class="radial-background fixed inset-0 opacity-50"></div>
+		<div class="top-line fixed top-0 left-0 w-full h-4 z-20"></div>
+		<div class="relative z-10 min-h-screen w-full">
 			<Header />
-			<slot />
+			<main>
+				<slot />
+			</main>
 			<Footer />
 		</div>
 	</body>
 </html>
 
-<style>
+<style is:global>
 	:root {
-		color-scheme: light dark;
 		font-family: Inter, sans-serif;
 		font-feature-settings:
 			"liga" 1,
@@ -43,11 +54,5 @@ import "./src/styles/global.css";
 	}
 	html {
 		font-family: InterVariable, sans-serif;
-		scroll-behavior: smooth;
-	}
-	body {
-		display: flex;
-		flex-direction: column;
-		overscroll-behavior: none;
 	}
 </style>
